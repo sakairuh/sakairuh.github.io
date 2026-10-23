@@ -1,0 +1,90 @@
+/* ことば雀の紹介ページ。色と牌の見た目はアプリ（タイトル画面）とサポートのページに合わせる */
+:root {
+  --bg: #1d1915;
+  --card: #2a241e;
+  --text: #f3ead7;
+  --muted: #b9ad95;
+  --accent: #f4d27a;
+  --line: rgb(214 180 106 / 0.35);
+}
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+  /* アプリと同じ青海波の地 */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(255 200 120 / 0.14), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cdefs%3E%3Cg id='w' fill='%231d1915' stroke='%23d6b46a' stroke-opacity='0.12' stroke-width='1'%3E%3Ccircle r='23.5'/%3E%3Ccircle r='17.5'/%3E%3Ccircle r='11.5'/%3E%3Ccircle r='5.5'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23w' x='24' y='-12'/%3E%3Cuse href='%23w' x='0' y='0'/%3E%3Cuse href='%23w' x='48' y='0'/%3E%3Cuse href='%23w' x='24' y='12'/%3E%3Cuse href='%23w' x='0' y='24'/%3E%3Cuse href='%23w' x='48' y='24'/%3E%3Cuse href='%23w' x='24' y='36'/%3E%3C/svg%3E"),
+    var(--bg);
+}
+main { max-width: 880px; margin: 0 auto; padding: 48px 16px 64px; }
+h1, h2, .subtitle, .catch, .soon { font-family: "Zen Maru Gothic", sans-serif; }
+h2 { font-size: 1.4rem; font-weight: 900; color: var(--accent); margin: 0 0 8px; }
+a { color: var(--accent); }
+
+/* 見出しの牌（こ・と・ば）と金の雀 */
+.hero { text-align: center; }
+.logo { display: flex; justify-content: center; align-items: flex-end; gap: clamp(6px, 1.5vw, 12px); margin: 0; font-weight: 900; line-height: 1; }
+.tile {
+  display: grid;
+  place-items: center;
+  width: clamp(64px, 16vw, 104px);
+  aspect-ratio: 1 / 1.25;
+  border-radius: 14%;
+  background: linear-gradient(170deg, #fffaf0, #f6efdf 60%, #ece2cb);
+  color: #2b2420;
+  font-size: clamp(40px, 10vw, 66px);
+  box-shadow: 0 4px 0 #ddd0b2, 0 8px 0 #b0683a, 0 14px 24px rgb(0 0 0 / 0.45);
+  margin-bottom: 8px;
+}
+.gold {
+  color: var(--accent);
+  font-size: clamp(64px, 16vw, 108px);
+  margin-left: clamp(4px, 1.5vw, 12px);
+  text-shadow: 0 5px 0 #3a2a10, 0 0 30px rgb(244 210 122 / 0.4);
+}
+.gold rt { font-size: 0.2em; letter-spacing: 0.3em; text-shadow: none; }
+.subtitle { margin: 24px 0 0; color: var(--muted); letter-spacing: 0.4em; font-weight: 700; }
+.catch { font-size: clamp(1.15rem, 4vw, 1.5rem); font-weight: 700; margin: 16px 0 8px; }
+/* 句ごとにまとめて折り返す */
+.catch span { display: inline-block; }
+.soon {
+  display: inline-block;
+  margin: 8px 0 32px;
+  padding: 6px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 画面の写真 */
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.5);
+}
+
+section { margin-top: 56px; }
+.feature p { margin: 0 0 20px; }
+.plans, .en { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.plans dl { margin: 0; }
+.plans dl div { display: flex; gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); }
+.plans dl div:first-child { border-top: none; }
+.plans dt { flex: 0 0 6.5em; color: var(--accent); font-weight: 700; }
+.plans dd { margin: 0; }
+.en p { margin: 0; }
+
+footer { margin-top: 56px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+footer p { margin: 8px 0; }
+
+@media (max-width: 480px) {
+  .plans dl div { flex-direction: column; gap: 0; }
+  .plans dt { flex: none; }
+}
