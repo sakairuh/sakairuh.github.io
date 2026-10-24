@@ -3,6 +3,7 @@
 Ryohei Sakai のアプリの、サイトの一番上の階層に置くファイル。
 
 - `robots.txt`・`sitemap.xml`: 検索エンジンに読ませるページの一覧。紹介ページを増やしたら `sitemap.xml` に足す
+- `b2847d82d18a605e68a3b2bc92ff62f8.txt`: IndexNow（Bing などにページの追加・更新を知らせる仕組み）のキー。ページを増やしたり直したりしたら、`https://api.indexnow.org/indexnow?url=<ページの URL>&key=b2847d82d18a605e68a3b2bc92ff62f8` を開くと知らせられる
 - `app-ads.txt`: 広告（Google AdMob）の発行元を示すファイル（[app-ads.txt](https://support.google.com/admob/answer/9363762)）。アプリの App Store の掲載にある開発者のサイト（`sakairuh.github.io` の下のサポートのページ）と同じドメインの一番上に置く必要がある
 
 - `kotobajan/`: ことば雀の紹介ページ（App Store の掲載のマーケティング URL）。画面の写真は、ストアのスクリーンショットを縮めたもの
