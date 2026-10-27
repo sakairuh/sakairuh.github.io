@@ -21,7 +21,7 @@ body {
     var(--bg);
 }
 main { max-width: 880px; margin: 0 auto; padding: 48px 16px 64px; }
-h1, h2, .subtitle, .catch, .soon { font-family: "Zen Maru Gothic", sans-serif; }
+h1, h2, .subtitle, .catch { font-family: "Zen Maru Gothic", sans-serif; }
 h2 { font-size: 1.4rem; font-weight: 900; color: var(--accent); margin: 0 0 8px; }
 a { color: var(--accent); }
 
@@ -51,15 +51,12 @@ a { color: var(--accent); }
 .catch { font-size: clamp(1.15rem, 4vw, 1.5rem); font-weight: 700; margin: 16px 0 8px; }
 /* 句ごとにまとめて折り返す */
 .catch span { display: inline-block; }
-.soon {
-  display: inline-block;
-  margin: 8px 0 32px;
-  padding: 6px 18px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--accent);
-  font-weight: 700;
-}
+/* App Store のバッジ（Apple の配布する黒のバッジ。高さ40px以上で出す） */
+.store { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 8px 0 32px; }
+.store a { display: block; line-height: 0; }
+.store img { display: block; width: auto; height: 56px; }
+.store span { color: var(--muted); font-size: 0.9rem; }
+.plans .store { margin: 24px 0 0; }
 
 /* 画面の写真 */
 .shot {
