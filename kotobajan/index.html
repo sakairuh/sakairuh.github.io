@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ことば雀 - ひらがな麻雀｜ひらがなの牌で単語を作る、言葉遊びの麻雀ゲーム</title>
-<meta name="description" content="ひらがなを牌にした、言葉遊びの麻雀ゲーム（iPhone アプリ）。手牌を並べ替えて単語を5つ作ればアガリ。果物・乗り物など同じ仲間の単語を揃えるほど点数が上がります。麻雀を知らなくても遊べます。">
+<meta name="description" content="ひらがなを牌にした、言葉遊びの麻雀ゲーム（iPhone アプリ）。手牌を並べ替えて単語を5つ作ればアガリ。果物・乗り物など同じ分類の単語を揃えるほど点数が上がります。麻雀を知らなくても遊べます。">
 <link rel="canonical" href="https://sakairuh.github.io/kotobajan/">
 <meta property="og:title" content="ことば雀 - ひらがな麻雀">
-<meta property="og:description" content="ひらがなの牌で単語を作る、言葉遊びの麻雀ゲーム。同じ仲間の単語を揃えるほど点数が上がります。">
+<meta property="og:description" content="ひらがなの牌で単語を作る、言葉遊びの麻雀ゲーム。同じ分類の単語を揃えるほど点数が上がります。">
 <meta property="og:image" content="https://sakairuh.github.io/kotobajan/img/turn.jpg">
 <meta property="og:url" content="https://sakairuh.github.io/kotobajan/">
 <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
   "@type": "MobileApplication",
   "name": "ことば雀 - ひらがな麻雀",
   "alternateName": ["ことば雀", "ことばじゃん", "Kotoba-jan"],
-  "description": "ひらがなを牌にした、言葉遊びの麻雀ゲーム。手牌を並べ替えて単語を5つ作ればアガリ。同じ仲間の単語を揃えるほど点数が上がります。",
+  "description": "ひらがなを牌にした、言葉遊びの麻雀ゲーム。手牌を並べ替えて単語を5つ作ればアガリ。同じ分類の単語を揃えるほど点数が上がります。",
   "url": "https://sakairuh.github.io/kotobajan/",
   "image": "https://sakairuh.github.io/kotobajan/img/icon.png",
   "screenshot": "https://sakairuh.github.io/kotobajan/img/turn.jpg",
@@ -62,15 +62,21 @@
 </section>
 
 <section class="feature">
-  <h2>役は「同じ仲間」の単語</h2>
-  <p>果物・野菜・鳥・虫・天気・乗り物・楽器など、38の仲間があります。同じ仲間の単語を揃えるほど点数が上がり、5つ揃えば役満。どの単語をどの仲間に数えるかは、いちばん高くなるように自動で選びます。</p>
+  <h2>役は「同じ分類」の単語</h2>
+  <p>果物・野菜・鳥・虫・天気・乗り物・楽器など、38の分類があります。同じ分類の単語を揃えるほど点数が上がり、5つ揃えば役満。どの単語をどの分類に数えるかは、いちばん高くなるように自動で選びます。</p>
   <img class="shot" src="img/yakuman.jpg" alt="なし・いちご・みかん・ぶどう・めろん の果物5つでアガった結果。果物×5 でダブル役満" width="1434" height="660" loading="lazy">
 </section>
 
 <section class="feature">
   <h2>ことばを楽しむ</h2>
   <p>並べるたびに、単語になったかがすぐ分かります。できた単語には漢字の表記を添えます（はし → 箸・橋・端）。収録はおよそ5,300語。麻雀を知らなくても、ことば遊びとして楽しめます。</p>
-  <img class="shot" src="img/yaku.jpg" alt="役の一覧。揃えた語の数と翻、仲間ごとの例の語が並ぶ" width="1434" height="660" loading="lazy">
+  <img class="shot" src="img/yaku.jpg" alt="役の一覧。揃えた語の数と翻、分類ごとの例の語が並ぶ" width="1434" height="660" loading="lazy">
+</section>
+
+<section class="feature">
+  <h2>並べ替えパズル<span class="soon">次のバージョン（1.5）から</span></h2>
+  <p>アガリの形に並んだ5つの単語を並べ替えて、元の単語を1つも使わない、別の5つの単語を作るパズルです。全100問で、時間の制限はありません。どの問題にも5つとも同じ分類で揃う答えがあり、行き詰まったらヒントでその分類と答えの単語を見られます。5つとも同じ分類で解くと★が付きます。</p>
+  <img class="shot" src="img/puzzle.jpg" alt="並べ替えパズルの画面。元の語 あゆ・かぶき・しゃつ・ひばり・らじお を並べ替えて、ゆば・あぶら・かつお までできている。ヒントに「5つとも「食材」の単語で作れます」と出ている" width="1434" height="660" loading="lazy">
 </section>
 
 <section class="plans">
@@ -78,14 +84,15 @@
   <dl>
     <div><dt>無料</dt><dd>1局の対局を、1日3回まで</dd></div>
     <div><dt>広告を見る</dt><dd>動画広告を1回見るごとに、もう1局。広告は自分で選んだときだけ流れます</dd></div>
-    <div><dt>買い切り</dt><dd>1局も東風戦も、何回でも広告なしで</dd></div>
+    <div><dt>買い切り</dt><dd>1局も東風戦も、何回でも広告なしで。並べ替えパズルも全問遊べます</dd></div>
+    <div><dt>パズル</dt><dd>並べ替えパズルは1問目が無料。それ以降は、動画広告を1回見るごとに次の1問（次のバージョン（1.5）から）</dd></div>
   </dl>
   <p class="store"><a href="https://apps.apple.com/jp/app/%E3%81%93%E3%81%A8%E3%81%B0%E9%9B%80-%E3%81%B2%E3%82%89%E3%81%8C%E3%81%AA%E9%BA%BB%E9%9B%80/id6826314811"><img src="img/app-store-badge.svg" alt="App Store からダウンロード" width="109" height="40"></a></p>
 </section>
 
 <section class="en" lang="en">
   <h2>Kotoba-jan: Hiragana Mahjong</h2>
-  <p>A mahjong game played with hiragana tiles. Rearrange your hand into one 2-letter word and four 3-letter words to win. Collecting words of the same kind, such as fruits or vehicles, raises your score. The screens are available in Japanese and English; the tiles and words are always hiragana. Available for iPhone on the <a href="https://apps.apple.com/jp/app/%E3%81%93%E3%81%A8%E3%81%B0%E9%9B%80-%E3%81%B2%E3%82%89%E3%81%8C%E3%81%AA%E9%BA%BB%E9%9B%80/id6826314811">App Store</a>.</p>
+  <p>A mahjong game played with hiragana tiles. Rearrange your hand into one 2-letter word and four 3-letter words to win. Collecting words of the same kind, such as fruits or vehicles, raises your score. Version 1.5 (coming soon) adds 100 anagram puzzles. The screens are available in Japanese and English; the tiles and words are always hiragana. Available for iPhone on the <a href="https://apps.apple.com/jp/app/%E3%81%93%E3%81%A8%E3%81%B0%E9%9B%80-%E3%81%B2%E3%82%89%E3%81%8C%E3%81%AA%E9%BA%BB%E9%9B%80/id6826314811">App Store</a>.</p>
 </section>
 
 <footer>

@@ -70,6 +70,8 @@ a { color: var(--accent); }
 
 section { margin-top: 56px; }
 .feature p { margin: 0 0 20px; }
+/* まだ出していない版の機能に添える札（公開されたら外す） */
+.soon { display: inline-block; margin-left: 10px; padding: 2px 10px; border: 1px solid var(--accent); border-radius: 999px; font-size: 0.8rem; font-weight: 700; vertical-align: middle; }
 .plans, .en { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
 .plans dl { margin: 0; }
 .plans dl div { display: flex; gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); }
