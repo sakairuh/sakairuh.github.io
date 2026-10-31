@@ -51,7 +51,8 @@ a { color: var(--accent); }
   text-shadow: 0 5px 0 #3a2a10, 0 0 30px rgb(244 210 122 / 0.4);
 }
 .gold rt { font-size: 0.2em; letter-spacing: 0.3em; text-shadow: none; }
-.subtitle { margin: 24px 0 0; color: var(--muted); letter-spacing: 0.4em; font-weight: 700; }
+h1 { margin: 0; }
+.subtitle { display: block; margin: 24px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.8; letter-spacing: 0.4em; font-weight: 700; }
 .catch { font-size: clamp(1.15rem, 4vw, 1.5rem); font-weight: 700; margin: 16px 0 8px; }
 /* 句ごとにまとめて折り返す */
 .catch span { display: inline-block; }
