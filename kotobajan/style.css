@@ -84,6 +84,26 @@ section { margin-top: 56px; }
 .plans dd { margin: 0; }
 .en p { margin: 0; }
 
+/* Android 版のテスターの募集 */
+section.android { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.android p { margin: 0 0 12px; }
+.en .android { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.en .android h3 { margin: 0 0 8px; font-family: "Zen Maru Gothic", sans-serif; font-size: 1.15rem; font-weight: 900; color: var(--accent); }
+.en .android p { margin: 0 0 12px; }
+.android .join { margin: 20px 0 12px; text-align: center; }
+.join-button {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: rgb(214 180 106 / 0.18);
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.join-button:hover { background: rgb(214 180 106 / 0.3); }
+.android .note, .en .android .note { margin: 0; color: var(--muted); font-size: 0.85rem; }
+
 footer { margin-top: 56px; color: var(--muted); font-size: 0.9rem; text-align: center; }
 footer p { margin: 8px 0; }
 
