@@ -41,19 +41,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
 <link rel="stylesheet" href="style.css">
+<script type="module" src="demo.js"></script>
 </head>
 <body>
 <main>
 
 <header class="hero">
   <h1 class="logo" aria-label="ことば雀">
-    <span class="tile">こ</span><span class="tile">と</span><span class="tile">ば</span><span class="gold"><ruby>雀<rt>じゃん</rt></ruby></span>
+    <span class="logo-tiles" aria-hidden="true"><span class="tile">こ</span><span class="tile">と</span><span class="tile">ば</span></span><span class="gold"><ruby>雀<rt>じゃん</rt></ruby></span>
   </h1>
   <p class="subtitle">ひらがな麻雀</p>
   <p class="catch"><span>手牌のひらがなを並べ替えて、</span><span>単語を5つ作ればアガリ。</span></p>
-  <p class="store"><a href="https://apps.apple.com/jp/app/%E3%81%93%E3%81%A8%E3%81%B0%E9%9B%80-%E3%81%B2%E3%82%89%E3%81%8C%E3%81%AA%E9%BA%BB%E9%9B%80/id6826314811"><img src="img/app-store-badge.svg" alt="App Store からダウンロード" width="109" height="40"></a><span>iPhone 向け・基本無料</span></p>
+  <p class="store"><a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=app-intro-page&amp;mt=8"><img src="img/app-store-badge.svg" alt="App Store からダウンロード" width="109" height="40"></a><span>iPhone 向け・基本無料</span></p>
   <img class="shot main-shot" src="img/turn.jpg" alt="対局中の画面。手牌が はし・いちご・みかん・すいか と並び、単語になった枠に 箸・苺・蜜柑・西瓜 の表記の札が付いている" width="1434" height="660">
 </header>
+
+<!-- 牌を触って試す所（demo.js）。JS が動かないときは出さない -->
+<section class="try" data-demo data-js-only hidden>
+  <h2>牌を並べ替えてみる</h2>
+  <p>牌をドラッグして重ねるか、2枚を続けてタップすると入れ替わります。単語になった枠は光って、漢字の表記が付きます。5つの枠をすべて単語にすればアガリ。この14枚には、果物が5つ隠れています。</p>
+  <div class="board" role="group" aria-label="手牌の並べ替え"></div>
+  <p class="board-status" aria-live="polite"></p>
+  <div class="board-controls"></div>
+</section>
 
 <section class="feature">
   <h2>単語を作って、アガる</h2>
@@ -76,6 +86,24 @@
 <section class="feature">
   <h2>並べ替えパズル<span class="soon">次のバージョン（1.5）から</span></h2>
   <p>アガリの形に並んだ5つの単語を並べ替えて、元の単語を1つも使わない、別の5つの単語を作るパズルです。全100問で、時間の制限はありません。どの問題にも5つとも同じ分類で揃う答えがあり、行き詰まったらヒントでその分類と答えの単語を見られます。5つとも同じ分類で解くと★が付きます。</p>
+  <div class="try puzzle-try" data-puzzle data-js-only hidden>
+    <h3>1問解いてみる</h3>
+    <p class="puzzle-goal">元の語を1つも使わずに、別の5つの単語を作ろう</p>
+    <p class="puzzle-original"><span class="puzzle-original-label">元の語</span></p>
+    <p class="puzzle-hint" hidden></p>
+    <div class="board" role="group" aria-label="並べ替えパズルの牌"></div>
+    <div class="board-controls"></div>
+    <div class="puzzle-clear" role="status" hidden>
+      <p class="puzzle-clear-title">クリア</p>
+      <p class="puzzle-badges"></p>
+      <p class="puzzle-made"></p>
+      <p class="puzzle-teaser">5つとも同じ分類で揃う答えがあります</p>
+      <p class="puzzle-answers"></p>
+      <p>アプリの並べ替えパズルは全100問です<span class="soon">次のバージョン（1.5）から</span></p>
+      <p class="store"><a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=app-intro-page&amp;mt=8"><img src="img/app-store-badge.svg" alt="App Store からダウンロード" width="109" height="40"></a></p>
+      <button type="button" class="board-button puzzle-retry">もう一度</button>
+    </div>
+  </div>
   <img class="shot" src="img/puzzle.jpg" alt="並べ替えパズルの画面。元の語 あゆ・かぶき・しゃつ・ひばり・らじお を並べ替えて、ゆば・あぶら・かつお までできている。ヒントに「5つとも「食材」の単語で作れます」と出ている" width="1434" height="660" loading="lazy">
 </section>
 
@@ -87,12 +115,37 @@
     <div><dt>買い切り</dt><dd>1局も東風戦も、何回でも広告なしで。並べ替えパズルも全問遊べます</dd></div>
     <div><dt>パズル</dt><dd>並べ替えパズルは1問目が無料。それ以降は、動画広告を1回見るごとに次の1問（次のバージョン（1.5）から）</dd></div>
   </dl>
-  <p class="store"><a href="https://apps.apple.com/jp/app/%E3%81%93%E3%81%A8%E3%81%B0%E9%9B%80-%E3%81%B2%E3%82%89%E3%81%8C%E3%81%AA%E9%BA%BB%E9%9B%80/id6826314811"><img src="img/app-store-badge.svg" alt="App Store からダウンロード" width="109" height="40"></a></p>
+  <p class="store"><a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=app-intro-page&amp;mt=8"><img src="img/app-store-badge.svg" alt="App Store からダウンロード" width="109" height="40"></a></p>
 </section>
 
 <section class="en" lang="en">
   <h2>Kotoba-jan: Hiragana Mahjong</h2>
-  <p>A mahjong game played with hiragana tiles. Rearrange your hand into one 2-letter word and four 3-letter words to win. Collecting words of the same kind, such as fruits or vehicles, raises your score. Version 1.5 (coming soon) adds 100 anagram puzzles. The screens are available in Japanese and English; the tiles and words are always hiragana. Available for iPhone on the <a href="https://apps.apple.com/jp/app/%E3%81%93%E3%81%A8%E3%81%B0%E9%9B%80-%E3%81%B2%E3%82%89%E3%81%8C%E3%81%AA%E9%BA%BB%E9%9B%80/id6826314811">App Store</a>.</p>
+  <p>A mahjong game played with hiragana tiles. Rearrange your hand into one 2-letter word and four 3-letter words to win. Collecting words of the same kind, such as fruits or vehicles, raises your score. Version 1.5 (coming soon) adds 100 anagram puzzles. The screens are available in Japanese and English; the tiles and words are always hiragana. Available for iPhone on the <a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=app-intro-page&amp;mt=8">App Store</a>.</p>
+  <div class="try" data-demo data-js-only hidden>
+    <h3>Try rearranging the tiles</h3>
+    <p>Drag a tile onto another, or tap two tiles in a row, to swap them. When a frame becomes a word, it lights up and shows the word in kanji. Make all five frames into words to win. Five fruits are hidden in these 14 tiles.</p>
+    <div class="board" role="group" aria-label="Rearrange the hand"></div>
+    <p class="board-status" aria-live="polite"></p>
+    <div class="board-controls"></div>
+  </div>
+  <div class="try puzzle-try" data-puzzle data-js-only hidden>
+    <h3>Try an anagram puzzle</h3>
+    <p class="puzzle-goal">Make five new words without using any of the original words</p>
+    <p class="puzzle-original"><span class="puzzle-original-label">Original words</span></p>
+    <p class="puzzle-hint" hidden></p>
+    <div class="board" role="group" aria-label="Anagram puzzle tiles"></div>
+    <div class="board-controls"></div>
+    <div class="puzzle-clear" role="status" hidden>
+      <p class="puzzle-clear-title">Solved!</p>
+      <p class="puzzle-badges"></p>
+      <p class="puzzle-made"></p>
+      <p class="puzzle-teaser">There is an answer with all five words from one category</p>
+      <p class="puzzle-answers"></p>
+      <p>The app has 100 anagram puzzles<span class="soon">coming in version 1.5</span></p>
+      <p><a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=app-intro-page&amp;mt=8">Download on the App Store</a></p>
+      <button type="button" class="board-button puzzle-retry">Try Again</button>
+    </div>
+  </div>
 </section>
 
 <footer>
