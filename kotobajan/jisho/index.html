@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ことば雀の辞書を引く｜ひらがな麻雀アプリ「ことば雀」</title>
+<meta name="description" content="ひらがな麻雀アプリ「ことば雀」で単語になる語かどうかを調べられます。読みを入れると、表記・分類と、同じ牌で作れる語が分かります。">
+<link rel="canonical" href="https://sakairuh.github.io/kotobajan/jisho/">
+<link rel="icon" type="image/png" href="../img/icon.png">
+<link rel="apple-touch-icon" href="../img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="../style.css">
+<style>
+/* 辞書を引くページ（hiragana-mahjong の tools/site/export.ts が書き出す data.js を引く）。地と牌の見た目は紹介のページ（../style.css）に合わせる */
+main { max-width: 640px; padding-top: 32px; }
+.back { font-size: 0.9rem; }
+h1 { font-family: "Zen Maru Gothic", sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--accent); margin: 8px 0 4px; }
+.lead { color: var(--muted); margin: 0 0 16px; font-size: 0.95rem; }
+.lang { float: right; font-size: 0.85rem; }
+form { display: flex; gap: 8px; }
+input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1.3rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+}
+input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.result { margin-top: 20px; padding: 18px 16px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); }
+.result[hidden] { display: none; }
+.word { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.tiles { display: flex; gap: 6px; }
+.tiles .tile { width: 52px; font-family: "Zen Maru Gothic", sans-serif; font-weight: 900; font-size: 34px; margin: 0 0 8px; box-shadow: 0 3px 0 var(--tile-side), 0 6px 0 var(--tile-back), 0 8px 14px rgb(0 0 0 / 0.4); }
+.verdict { font-family: "Zen Maru Gothic", sans-serif; font-weight: 900; font-size: 1.15rem; }
+.verdict.yes { color: #9ee0a0; }
+.verdict.no { color: #ff9a7a; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 14px 0 0; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+.chip { display: inline-block; margin: 2px 6px 2px 0; padding: 0 10px; border-radius: 999px; background: rgb(214 180 106 / 0.18); border: 1px solid var(--line); }
+.note { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+.lists h2 { font-size: 1rem; margin: 20px 0 6px; }
+.links { display: flex; flex-wrap: wrap; gap: 6px; }
+.links a { padding: 2px 10px; border-radius: 8px; background: var(--card); border: 1px solid var(--line); text-decoration: none; color: var(--text); }
+.links a small { color: var(--muted); margin-left: 4px; }
+.more { color: var(--muted); font-size: 0.85rem; }
+footer { margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../" data-t="back">← ことば雀</a>
+  <a class="lang" href="#" id="lang">English</a>
+  <h1 data-t="title">ことば雀の辞書を引く</h1>
+  <p class="lead" data-t="lead">読みをひらがなかカタカナで入れると、ことば雀で単語になるか（辞書にあるか）と、表記・分類が分かります。</p>
+  <form id="form" autocomplete="off">
+    <input id="q" type="search" inputmode="text" enterkeyhint="search" lang="ja" aria-label="読み" placeholder="いちご">
+  </form>
+  <section class="result" id="result" hidden aria-live="polite"></section>
+  <div class="lists" id="lists"></div>
+  <footer>
+    <p id="credit"></p>
+    <p>© 2026 Ryohei Sakai</p>
+  </footer>
+</main>
+<script type="module">
+import data from './data.js'
+
+// 牌の字と枚数（hiragana-mahjong の src/core/tiles.ts と同じ。清音は各2枚、濁音・半濁音・小文字・ー は各1枚）
+const SEION = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわん'
+const TILE_COUNTS = new Map([...SEION].map((c) => [c, 2]).concat([...'がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょっー'].map((c) => [c, 1])))
+const REPORT = 'https://github.com/sakairuh/kotobajan-data/issues/new'
+const LIST_MAX = 120
+
+const TEXT = {
+  ja: {
+    back: '← ことば雀', title: 'ことば雀の辞書を引く',
+    lead: '読みをひらがなかカタカナで入れると、ことば雀で単語になるか（辞書にあるか）と、表記・分類が分かります。',
+    other: 'English', yes: '単語になります', no: '辞書にありません',
+    spelling: '表記', category: '分類', none: 'なし（単語にはなるが、役には数えない）',
+    length: 'ことば雀の単語は2文字か3文字です。', badChars: (cs) => `牌にない字が入っています: ${cs}`,
+    fewTiles: (cs) => `牌が足りません（${cs} の牌は1枚だけ）`,
+    report: 'この語を辞書に足してほしいとき', reportLink: '報告する（GitHub）',
+    anagrams: '同じ牌で作れる語', prefix: (q) => `「${q}」で始まる語`, contains: (q) => `「${q}」を含む語`,
+    more: (n) => `ほか ${n}語`,
+    credit: (d) => `辞書データは <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a>（Electronic Dictionary Research and Development Group、<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>、${d} 版）をもとに作っています。単語のデータは <a href="https://github.com/sakairuh/kotobajan-data">kotobajan-data</a> で公開しています。`,
+  },
+  en: {
+    back: '← Kotobajan', title: 'Kotobajan Dictionary',
+    lead: 'Type a reading in hiragana or katakana to see whether it counts as a word in Kotobajan, with its spellings and categories.',
+    other: '日本語', yes: 'Counts as a word', no: 'Not in the dictionary',
+    spelling: 'Spellings', category: 'Category', none: 'None (a word, but no yaku)',
+    length: 'Kotobajan words are 2 or 3 letters long.', badChars: (cs) => `Contains letters that are not tiles: ${cs}`,
+    fewTiles: (cs) => `Not enough tiles (only one ${cs} tile)`,
+    report: 'Think this word should be added?', reportLink: 'Report it (GitHub)',
+    anagrams: 'Words from the same tiles', prefix: (q) => `Words starting with ${q}`, contains: (q) => `Words containing ${q}`,
+    more: (n) => `${n} more`,
+    credit: (d) => `Dictionary data is based on <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a> (Electronic Dictionary Research and Development Group, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, ${d}). The word data is published at <a href="https://github.com/sakairuh/kotobajan-data">kotobajan-data</a>.`,
+  },
+}
+
+const params = new URLSearchParams(location.search)
+let lang = params.get('lang') === 'en' || (params.get('lang') === null && !navigator.language.startsWith('ja')) ? 'en' : 'ja'
+const words = data.words
+const readings = Object.keys(words)
+const $ = (id) => document.getElementById(id)
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
+
+/** カタカナをひらがなにし、空白を除く（ー はそのまま） */
+const normalize = (s) => s.replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60)).replace(/\s/g, '')
+const sorted = (s) => [...s].sort().join('')
+const categoryName = (i) => {
+  const c = data.categories[i]
+  return lang === 'en' ? `${data.categoryNamesEn[c.big]} › ${data.categoryNamesEn[c.small]}` : `${c.big} › ${c.small}`
+}
+
+function render() {
+  const t = TEXT[lang]
+  document.documentElement.lang = lang
+  for (const el of document.querySelectorAll('[data-t]')) el.textContent = t[el.dataset.t]
+  document.title = lang === 'en' ? 'Kotobajan Dictionary' : 'ことば雀の辞書を引く｜ひらがな麻雀アプリ「ことば雀」'
+  $('lang').textContent = t.other
+  $('q').setAttribute('aria-label', lang === 'en' ? 'Reading' : '読み')
+  $('credit').innerHTML = t.credit(data.jmdict)
+
+  const q = normalize($('q').value)
+  const url = new URL(location.href)
+  if (q) url.searchParams.set('q', q)
+  else url.searchParams.delete('q')
+  if (lang === 'en') url.searchParams.set('lang', 'en')
+  else url.searchParams.delete('lang')
+  history.replaceState(null, '', url)
+
+  const result = $('result')
+  const lists = $('lists')
+  if (!q) {
+    result.hidden = true
+    lists.innerHTML = ''
+    return
+  }
+  result.hidden = false
+  const entry = words[q]
+  const tiles = `<span class="tiles" aria-hidden="true">${[...q].slice(0, 6).map((c) => `<span class="tile">${esc(c)}</span>`).join('')}</span>`
+  if (entry) {
+    const [spellings, categories] = entry
+    result.innerHTML = `<div class="word">${tiles}<span class="verdict yes">✓ ${t.yes}</span></div>
+      <dl>
+        <dt>${t.spelling}</dt><dd>${spellings.length ? spellings.map((s) => `<span class="chip">${esc(s)}</span>`).join('') : '—'}</dd>
+        <dt>${t.category}</dt><dd>${categories.length ? categories.map((i) => `<span class="chip">${esc(categoryName(i))}</span>`).join('') : t.none}</dd>
+      </dl>`
+  } else {
+    const chars = [...q]
+    const bad = [...new Set(chars.filter((c) => !TILE_COUNTS.has(c)))]
+    const few = [...new Set(chars.filter((c) => TILE_COUNTS.has(c) && chars.filter((x) => x === c).length > TILE_COUNTS.get(c)))]
+    const notes = [
+      chars.length < 2 || chars.length > 3 ? t.length : null,
+      bad.length ? t.badChars(bad.join(' ')) : null,
+      few.length ? t.fewTiles(few.join(' ')) : null,
+    ].filter(Boolean)
+    const report = new URLSearchParams({ template: 'word-report.yml', title: `${q}: 足りない単語`, kind: '足りない単語', reading: q })
+    result.innerHTML = `<div class="word">${tiles}<span class="verdict no">✗ ${t.no}</span></div>
+      ${notes.map((n) => `<p class="note">${esc(n)}</p>`).join('')}
+      ${notes.length === 0 ? `<p class="note">${t.report}: <a href="${REPORT}?${report}">${t.reportLink}</a></p>` : ''}`
+  }
+
+  // 同じ牌で作れる語（並べ替え）、始まる語、含む語
+  const key = sorted(q)
+  const groups = [
+    [t.anagrams, readings.filter((w) => w !== q && w.length === q.length && sorted(w) === key)],
+    [t.prefix(q), q.length < 3 ? readings.filter((w) => w !== q && w.startsWith(q)) : []],
+    [t.contains(q), q.length < 3 ? readings.filter((w) => w !== q && !w.startsWith(q) && w.includes(q)) : []],
+  ]
+  lists.innerHTML = groups
+    .filter(([, ws]) => ws.length > 0)
+    .map(([title, ws]) => `<h2>${esc(title)}</h2><p class="links">${ws
+      .slice(0, LIST_MAX)
+      .map((w) => `<a href="?q=${encodeURIComponent(w)}" data-q="${esc(w)}">${esc(w)}${words[w][0][0] ? `<small>${esc(words[w][0][0])}</small>` : ''}</a>`)
+      .join('')}${ws.length > LIST_MAX ? `<span class="more">${t.more(ws.length - LIST_MAX)}</span>` : ''}</p>`)
+    .join('')
+}
+
+$('q').value = params.get('q') ?? ''
+$('q').addEventListener('input', render)
+$('form').addEventListener('submit', (e) => {
+  e.preventDefault()
+  $('q').blur()
+})
+$('lists').addEventListener('click', (e) => {
+  const a = e.target.closest('a[data-q]')
+  if (!a) return
+  e.preventDefault()
+  $('q').value = a.dataset.q
+  render()
+  scrollTo({ top: 0, behavior: 'smooth' })
+})
+$('lang').addEventListener('click', (e) => {
+  e.preventDefault()
+  lang = lang === 'en' ? 'ja' : 'en'
+  render()
+})
+render()
+if (!$('q').value) $('q').focus()
+</script>
+</body>
+</html>
