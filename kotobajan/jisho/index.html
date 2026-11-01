@@ -45,6 +45,9 @@ dt { color: var(--muted); }
 dd { margin: 0; }
 .chip { display: inline-block; margin: 2px 6px 2px 0; padding: 0 10px; border-radius: 999px; background: rgb(214 180 106 / 0.18); border: 1px solid var(--line); }
 .note { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+/* 辞書にない語に添える、辞書に入れる語の決まり（固有名詞などの報告を減らす） */
+.rules { margin: 12px 0 0; padding: 10px 12px 10px 28px; border-radius: 10px; background: rgb(0 0 0 / 0.2); font-size: 0.9rem; }
+.rules li + li { margin-top: 4px; }
 .lists h2 { font-size: 1rem; margin: 20px 0 6px; }
 .links { display: flex; flex-wrap: wrap; gap: 6px; }
 .links a { padding: 2px 10px; border-radius: 8px; background: var(--card); border: 1px solid var(--line); text-decoration: none; color: var(--text); }
@@ -86,7 +89,10 @@ const TEXT = {
     spelling: '表記', category: '分類', none: 'なし（単語にはなるが、役には数えない）',
     length: 'ことば雀の単語は2文字か3文字です。', badChars: (cs) => `牌にない字が入っています: ${cs}`,
     fewTiles: (cs) => `牌が足りません（${cs} の牌は1枚だけ）`,
-    report: 'この語を辞書に足してほしいとき', reportLink: '報告する（GitHub）',
+    rules: ['ことば雀の辞書に入っているのは、ふつうの名詞（物や事の名前）だけです。',
+      '地名・人名・会社や商品の名前などの固有名詞（なごや・たなか・そにー）や、名詞でない言葉（はしる・あまい）は入っていません。',
+      '外来語や定着した略語（てれび・すまほ）は入っています。'],
+    report: 'ふつうの名詞なのに入っていないときは', reportLink: '報告する（GitHub）',
     anagrams: '同じ牌で作れる語', prefix: (q) => `「${q}」で始まる語`, contains: (q) => `「${q}」を含む語`,
     more: (n) => `ほか ${n}語`,
     credit: (d) => `辞書データは <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a>（Electronic Dictionary Research and Development Group、<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>、${d} 版）をもとに作っています。単語のデータは <a href="https://github.com/sakairuh/kotobajan-data">kotobajan-data</a> で公開しています。`,
@@ -98,7 +104,10 @@ const TEXT = {
     spelling: 'Spellings', category: 'Category', none: 'None (a word, but no yaku)',
     length: 'Kotobajan words are 2 or 3 letters long.', badChars: (cs) => `Contains letters that are not tiles: ${cs}`,
     fewTiles: (cs) => `Not enough tiles (only one ${cs} tile)`,
-    report: 'Think this word should be added?', reportLink: 'Report it (GitHub)',
+    rules: ['The Kotobajan dictionary has common nouns (names of things) only.',
+      'Proper nouns, such as places, people, companies and products (なごや, たなか, そにー), and words that are not nouns (はしる, あまい) are not included.',
+      'Loanwords and common abbreviations (てれび = TV, すまほ = smartphone) are included.'],
+    report: 'A common noun that is missing?', reportLink: 'Report it (GitHub)',
     anagrams: 'Words from the same tiles', prefix: (q) => `Words starting with ${q}`, contains: (q) => `Words containing ${q}`,
     more: (n) => `${n} more`,
     credit: (d) => `Dictionary data is based on <a href="https://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project">JMdict</a> (Electronic Dictionary Research and Development Group, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, ${d}). The word data is published at <a href="https://github.com/sakairuh/kotobajan-data">kotobajan-data</a>.`,
@@ -166,7 +175,7 @@ function render() {
     const report = new URLSearchParams({ template: 'word-report.yml', title: `${q}: 足りない単語`, kind: '足りない単語', reading: q })
     result.innerHTML = `<div class="word">${tiles}<span class="verdict no">✗ ${t.no}</span></div>
       ${notes.map((n) => `<p class="note">${esc(n)}</p>`).join('')}
-      ${notes.length === 0 ? `<p class="note">${t.report}: <a href="${REPORT}?${report}">${t.reportLink}</a></p>` : ''}`
+      ${notes.length === 0 ? `<ul class="rules">${t.rules.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><p class="note">${t.report}: <a href="${REPORT}?${report}">${t.reportLink}</a></p>` : ''}`
   }
 
   // 同じ牌で作れる語（並べ替え）、始まる語、含む語
