@@ -61,9 +61,11 @@ App Store: https://apps.apple.com/jp/app/id6826314811
 紹介ページ: https://sakairuh.github.io/kotobajan/
 プレスキット（画像素材）: https://sakairuh.github.io/kotobajan/press/
 開発: Sukima Apps（Ryohei Sakai、個人開発）
+X: https://x.com/sukima_apps
 辞書データ: JMdict（Electronic Dictionary Research and Development Group、CC BY-SA 4.0）をもとに作成
 
 ■本件に関するお問い合わせ
 
 Sukima Apps　Ryohei Sakai
-メール: ryohei.dev.support@gmail.com
+メール: sukima.apps.dev@gmail.com
+X: https://x.com/sukima_apps
