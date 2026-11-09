@@ -1,12 +1,12 @@
 ニュースリリース
 報道関係者各位
 2026年11月○日
-sukima apps（Ryohei Sakai）
+Sukima Apps（Ryohei Sakai）
 
 ひらがなの牌で単語を作る麻雀ゲーム「ことば雀」、iPhone・iPad で配信開始
 ― 手牌を並べ替えて、単語を5つ作ればアガリ。ひらがなを覚えたての子どもから、麻雀を知らない大人まで ―
 
-個人でアプリを開発している sukima apps（Ryohei Sakai）は、ひらがなを牌にした言葉遊びの麻雀ゲーム「ことば雀（ことばじゃん）- ひらがな麻雀」を、2026年10月27日に App Store で配信開始しました。iPhone・iPad で遊べます。基本無料で、買い切り（500円）にするとすべての遊びが無制限になります。広告はありません。配信開始後もアップデートを重ね、並べ替えパズル100問や、日替わりの「今日の二十手」「早並べ」とランキングを加えています。
+個人でアプリを開発している Sukima Apps（Ryohei Sakai）は、ひらがなを牌にした言葉遊びの麻雀ゲーム「ことば雀（ことばじゃん）- ひらがな麻雀」を、2026年10月27日に App Store で配信開始しました。iPhone・iPad で遊べます。基本無料で、買い切り（500円）にするとすべての遊びが無制限になります。広告はありません。配信開始後もアップデートを重ね、並べ替えパズル100問や、日替わりの「今日の二十手」「早並べ」とランキングを加えています。
 
 ■「ことば雀」とは
 
@@ -42,7 +42,7 @@ sukima apps（Ryohei Sakai）
 
 ■開発者のコメント
 
-「ひらがなを覚えたての子どもと、麻雀のルールを知らない大人が、一緒に遊べるゲームがあったらいいなと思って作りました。知っている言葉を並べるだけで遊べるので、日本語を勉強中の海外の方にも遊んでもらえたら嬉しいです。」（sukima apps　Ryohei Sakai）
+「ひらがなを覚えたての子どもと、麻雀のルールを知らない大人が、一緒に遊べるゲームがあったらいいなと思って作りました。知っている言葉を並べるだけで遊べるので、日本語を勉強中の海外の方にも遊んでもらえたら嬉しいです。」（Sukima Apps　Ryohei Sakai）
 
 ■今後の予定
 
@@ -60,10 +60,10 @@ Android 版を準備しています。Google Play での公開に向けて、試
 App Store: https://apps.apple.com/jp/app/id6826314811
 紹介ページ: https://sakairuh.github.io/kotobajan/
 プレスキット（画像素材）: https://sakairuh.github.io/kotobajan/press/
-開発: sukima apps（Ryohei Sakai、個人開発）
+開発: Sukima Apps（Ryohei Sakai、個人開発）
 辞書データ: JMdict（Electronic Dictionary Research and Development Group、CC BY-SA 4.0）をもとに作成
 
 ■本件に関するお問い合わせ
 
-sukima apps　Ryohei Sakai
+Sukima Apps　Ryohei Sakai
 メール: ryohei.dev.support@gmail.com
