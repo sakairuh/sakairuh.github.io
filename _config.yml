@@ -1,0 +1,3 @@
+# README.md is notes for the repo; keep it off the site now that index.html is the top page
+exclude:
+  - README.md

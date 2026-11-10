@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sukima Apps（Ryohei Sakai）｜個人開発の iPhone アプリ</title>
+<meta name="description" content="Sukima Apps（Ryohei Sakai）が個人で作っている iPhone アプリの一覧。ひらがな麻雀「ことば雀」、試験までの勉強のペースを作る「勉強ペースメーカー」、子ども向けのひらがな・カタカナ学習「もじっこ」。">
+<link rel="canonical" href="https://sakairuh.github.io/">
+<meta property="og:title" content="Sukima Apps（Ryohei Sakai）">
+<meta property="og:description" content="個人で作っている iPhone アプリの一覧">
+<meta property="og:url" content="https://sakairuh.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sukima Apps">
+<meta property="og:locale" content="ja_JP">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Sukima Apps",
+  "url": "https://sakairuh.github.io/",
+  "email": "sukima.apps.dev@gmail.com",
+  "founder": { "@type": "Person", "name": "Ryohei Sakai" },
+  "sameAs": ["https://x.com/sukima_apps"]
+}
+</script>
+<style>
+:root {
+  --bg: #f6f3ee;
+  --card: #fff;
+  --text: #2b2723;
+  --muted: #7a7168;
+  --accent: #8a5a2b;
+  --line: #e4ddd3;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+a { color: var(--accent); }
+header h1 { font-size: 1.8rem; margin: 0; letter-spacing: 0.02em; }
+header h1 span { font-size: 1rem; font-weight: normal; color: var(--muted); display: inline-block; }
+header p { margin: 4px 0 0; color: var(--muted); }
+header nav { margin-top: 8px; font-size: 0.95rem; }
+h2 { font-size: 1.15rem; margin: 2.2em 0 0.8em; }
+.apps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.app { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; gap: 16px; align-items: flex-start; }
+.app img { width: 72px; height: 72px; border-radius: 16px; flex: none; border: 1px solid var(--line); }
+.app h3 { font-size: 1.1rem; margin: 0; }
+.app p { margin: 4px 0 0; }
+.app .links { font-size: 0.95rem; }
+.app .links a { white-space: nowrap; }
+.app h3 span { display: inline-block; }
+@media (max-width: 480px) {
+  .app { padding: 16px; gap: 12px; }
+  .app img { width: 56px; height: 56px; border-radius: 13px; }
+}
+.contact p { margin: 0; }
+section.en { margin-top: 48px; padding-top: 8px; border-top: 1px solid var(--line); }
+footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Sukima Apps <span>（Ryohei Sakai）</span></h1>
+  <p>個人で iPhone アプリを作っています。</p>
+  <nav><a href="#en">English</a></nav>
+</header>
+
+<h2>アプリ</h2>
+<ul class="apps">
+  <li class="app">
+    <img src="kotobajan/img/icon.png" alt="ことば雀のアイコン" width="72" height="72">
+    <div>
+      <h3>ことば雀 - <span>ひらがな麻雀</span></h3>
+      <p>ひらがなを牌にした、言葉遊びの麻雀ゲーム。手牌を並べ替えて単語を5つ作ればアガリ。同じ分類の単語を揃えるほど点数が上がります。</p>
+      <p class="links"><a href="kotobajan/">紹介</a> ・ <a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=developer-top&amp;mt=8">App Store</a> ・ <a href="kotobajan/jisho/">辞書を引く</a> ・ <a href="kotobajan-support/">サポート</a></p>
+    </div>
+  </li>
+  <li class="app">
+    <img src="pacekei-support/icon.png" alt="勉強ペースメーカーのアイコン" width="72" height="72">
+    <div>
+      <h3>勉強ペースメーカー</h3>
+      <p>試験日までに勉強に使える時間を数え、教材の範囲を毎日に割り振ります。「今日」の範囲を終えたらチェックを付けるだけ。ウィジェットで残りの日数と時間も見られます。</p>
+      <p class="links"><a href="https://apps.apple.com/jp/app/apple-store/id6830642924?pt=129559225&amp;ct=developer-top&amp;mt=8">App Store</a> ・ <a href="pacekei-support/">サポート</a></p>
+    </div>
+  </li>
+  <li class="app">
+    <img src="mojikko-support/icon.png" alt="もじっこのアイコン" width="72" height="72">
+    <div>
+      <h3>もじっこ <span>ひらがな・カタカナ</span></h3>
+      <p>5〜6歳のお子さま向けの、ひらがな・カタカナの学習アプリ。聞いて分かる・見分けられる・書けるを目指します。シとツ、ソとンのような似ている字の見分けに力を入れています。</p>
+      <p class="links"><a href="https://apps.apple.com/app/apple-store/id6819033155?pt=129559225&amp;ct=developer-top&amp;mt=8">App Store</a> ・ <a href="mojikko-support/">サポート</a></p>
+    </div>
+  </li>
+</ul>
+
+<section class="contact">
+  <h2>お問い合わせ</h2>
+  <p>メール: <a href="mailto:sukima.apps.dev@gmail.com">sukima.apps.dev@gmail.com</a><br>X: <a href="https://x.com/sukima_apps">@sukima_apps</a></p>
+  <p>報道関係の方へ: <a href="kotobajan/press/">ことば雀のプレスキット</a></p>
+</section>
+
+<section class="en" lang="en" id="en">
+  <h2>Sukima Apps (Ryohei Sakai)</h2>
+  <p>I make iPhone apps on my own.</p>
+  <ul class="apps">
+    <li class="app">
+      <img src="kotobajan/img/icon.png" alt="Kotobajan icon" width="72" height="72">
+      <div>
+        <h3>Kotobajan: Hiragana Mahjong</h3>
+        <p>A mahjong game played with hiragana tiles. Rearrange your hand into five words to win. Collecting words of the same kind, such as fruits or vehicles, raises your score.</p>
+        <p class="links"><a href="kotobajan/#en">About</a> ・ <a href="https://apps.apple.com/app/apple-store/id6826314811?pt=129559225&amp;ct=developer-top&amp;mt=8">App Store</a> ・ <a href="kotobajan/jisho/?lang=en">Dictionary</a> ・ <a href="kotobajan-support/#en">Support</a></p>
+      </div>
+    </li>
+    <li class="app">
+      <img src="pacekei-support/icon.png" alt="Study Pacemaker icon" width="72" height="72">
+      <div>
+        <h3>Study Pacemaker (勉強ペースメーカー)</h3>
+        <p>Counts the study time you have left before your exam and spreads your materials over each day. Japanese only, available in Japan.</p>
+        <p class="links"><a href="https://apps.apple.com/jp/app/apple-store/id6830642924?pt=129559225&amp;ct=developer-top&amp;mt=8">App Store</a> ・ <a href="pacekei-support/#en">Support</a></p>
+      </div>
+    </li>
+    <li class="app">
+      <img src="mojikko-support/icon.png" alt="Mojikko icon" width="72" height="72">
+      <div>
+        <h3>Mojikko: Hiragana &amp; Katakana</h3>
+        <p>A learning app that helps young children recognize, tell apart and write hiragana and katakana, with a special focus on look-alike characters such as シ and ツ.</p>
+        <p class="links"><a href="https://apps.apple.com/app/apple-store/id6819033155?pt=129559225&amp;ct=developer-top&amp;mt=8">App Store</a> ・ <a href="mojikko-support/#en">Support</a></p>
+      </div>
+    </li>
+  </ul>
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:sukima.apps.dev@gmail.com">sukima.apps.dev@gmail.com</a><br>X: <a href="https://x.com/sukima_apps">@sukima_apps</a></p>
+</section>
+
+<footer>
+  <p>© 2026 Sukima Apps（Ryohei Sakai）</p>
+</footer>
+
+</main>
+</body>
+</html>
