@@ -81,10 +81,25 @@ function evaluate(words, picks) {
 	}
 	return result;
 }
+/** 割り当ての良さ。役満の倍数・翻・いちばん大きいグループの語数・役に数えた語数の順に比べる */
+function rankOf(yaku) {
+	const sizes = yaku.groups.map((g) => g.words.length);
+	return [
+		yaku.yakuman,
+		yaku.han,
+		Math.max(0, ...sizes),
+		sizes.reduce((a, b) => a + b, 0)
+	];
+}
+const better = (a, b) => {
+	for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] > b[i];
+	return false;
+};
 /**
 * 役の判定。1語は1つのグループにだけ入れ、同じカテゴリの語はまとめて1つのグループとして数える。
-* 割り当ては、役満（ダブル役満）が最優先、次に翻が最も多くなる組み合わせを総当たりで選ぶ（同じなら先に見つけたもの）。
-* 満貫以上は基本点が同じでも、翻が多い方を選ぶ
+* 割り当ては、役満（ダブル役満）が最優先、次に翻が最も多くなる組み合わせを総当たりで選ぶ。
+* 満貫以上は基本点が同じでも、翻が多い方を選ぶ。翻も同じなら、語の多いグループを作る方（いか・いちご・みかん は 果物×2 より 食べ物×3。
+* 手牌の役の表示で、役満へ近い方を見せるため）、それも同じなら先に見つけたもの
 */
 function evaluateYaku(words, lookup) {
 	const options = words.map((w) => optionsOf(lookup(w)));
@@ -94,12 +109,12 @@ function evaluateYaku(words, lookup) {
 		yakuman: 0,
 		groups: []
 	};
-	let bestRank = 0;
+	let bestRank = rankOf(best);
 	const search = (i) => {
 		if (i === words.length) {
 			const yaku = evaluate(words, picks);
-			const rank = yaku.yakuman > 0 ? 1e3 * yaku.yakuman : yaku.han;
-			if (rank > bestRank) {
+			const rank = rankOf(yaku);
+			if (better(rank, bestRank)) {
 				best = yaku;
 				bestRank = rank;
 			}
@@ -113,5 +128,25 @@ function evaluateYaku(words, lookup) {
 	search(0);
 	return best;
 }
+/**
+* 手牌でできている語（単語になった枠と公開した語）の役を、結果の札と同じ割り当てで返す。
+* できている語だけから出すので、まだ見つけていない語のヒントにはならない
+*/
+function handYaku(words, lookup) {
+	const used = /* @__PURE__ */ new Set();
+	return evaluateYaku(words, lookup).groups.map((g) => {
+		const indices = g.words.map((w) => {
+			const i = words.findIndex((x, j) => x === w && !used.has(j));
+			used.add(i);
+			return i;
+		});
+		const reach = g.words.length === 4 ? g.level === "small" ? 2 : 1 : 0;
+		return {
+			...g,
+			indices,
+			reach
+		};
+	});
+}
 //#endregion
-export { HAN, YAKUMAN_COUNT, createCategoryLookup, evaluateYaku };
+export { HAN, YAKUMAN_COUNT, createCategoryLookup, evaluateYaku, handYaku };
