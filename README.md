@@ -8,6 +8,7 @@ Sukima Apps（Ryohei Sakai）のアプリの、サイトの一番上の階層に
 - `b2847d82d18a605e68a3b2bc92ff62f8.txt`: IndexNow（Bing などにページの追加・更新を知らせる仕組み）のキー。ページを増やしたり直したりしたら、`https://api.indexnow.org/indexnow?url=<ページの URL>&key=b2847d82d18a605e68a3b2bc92ff62f8` を開くと知らせられる
 - `app-ads.txt`: 広告（Google AdMob）の発行元を示すファイル（[app-ads.txt](https://support.google.com/admob/answer/9363762)）。アプリの App Store の掲載にある開発者のサイト（`sakairuh.github.io` の下のサポートのページ）と同じドメインの一番上に置く必要がある
 
+- `sakae-map/`・`sakae-map-support/`: 栄 地下街マップの紹介ページと、サポート・プライバシーポリシー（ほかのアプリのサポートは別リポジトリだが、こちらは作業環境から新しいリポジトリを作れなかったためこのリポジトリに置いている。URL の形は同じ）。アプリ本体は非公開の `sakairuh/sakae-underground-map`
 - `kotobajan/`: ことば雀の紹介ページ（App Store の掲載のマーケティング URL）。画面の写真は、ストアのスクリーンショットを縮めたもの
 
 各アプリのページ:
@@ -15,3 +16,4 @@ Sukima Apps（Ryohei Sakai）のアプリの、サイトの一番上の階層に
 - [ことば雀 - ひらがな麻雀](https://sakairuh.github.io/kotobajan/)（[サポート](https://sakairuh.github.io/kotobajan-support/)）
 - 勉強ペースメーカー: [サポート](https://sakairuh.github.io/pacekei-support/)
 - もじっこ: [サポート](https://sakairuh.github.io/mojikko-support/)
+- 栄 地下街マップ: [紹介](https://sakairuh.github.io/sakae-map/)（[サポート](https://sakairuh.github.io/sakae-map-support/)、[プライバシーポリシー](https://sakairuh.github.io/sakae-map-support/privacy.html)）
